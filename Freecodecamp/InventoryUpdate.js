@@ -8,6 +8,13 @@
  */
 
 function updateInventory(arr1, arr2) {
+  let flag = false;
+  if (arr1.length === 0) {
+    arr1 = [...arr2];
+    arr2 = [...arr1];
+    flag = true;
+  }
+
   arr2.forEach((arr2Element) => {
     arr1.forEach((arr1Element) => {
       if (arr2Element[1] === arr1Element[1]) {
@@ -25,6 +32,20 @@ function updateInventory(arr1, arr2) {
       }
     });
   });
+  arr1.sort(function (a, b) {
+    if (a[1] > b[1]) {
+      return 1;
+    }
+    if (a[1] < b[1]) {
+      return -1;
+    }
+    return 0;
+  });
+  if (flag) {
+    arr1.forEach((el) => {
+      el[0] = el[0] / 2;
+    });
+  }
   return arr1;
 }
 
@@ -43,4 +64,14 @@ var newInv = [
   [7, 'Toothpaste'],
 ];
 
-console.log(updateInventory(curInv, newInv));
+console.log(
+  updateInventory(
+    [],
+    [
+      [2, 'Hair Pin'],
+      [3, 'Half-Eaten Apple'],
+      [67, 'Bowling Ball'],
+      [7, 'Toothpaste'],
+    ]
+  )
+);
