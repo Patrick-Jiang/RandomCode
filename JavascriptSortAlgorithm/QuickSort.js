@@ -24,8 +24,6 @@ function quickSort(arr) {
   } else {
     return [piovt, ...quickSort(rightArr)];
   }
-
-  return arr;
 }
 
 console.log(quickSort(testArr));
